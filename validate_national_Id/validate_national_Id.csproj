@@ -1,9 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>ValidateNationalId</Title>
+		<Authors>Abdelaliem Hosny</Authors>
+		<Description>A library for validating national IDs in Egypt, extracting birth date, age, gender, and provincial details based on the national ID.</Description>
+		<PackageId>ValidateNationalIdLib</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<!-- Choose a license, e.g., MIT -->
+		<PackageProjectUrl>https://github.com/abdohosny1/validate_national_Id</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/abdohosny1/validate_national_Id</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<!-- Specifies that this is hosted in a Git repository -->
+		<Authors>Abdelaliem Hosny</Authors>
+		<Company>Your Company Name</Company>
+		<!-- Replace with your actual company name -->
+		<Copyright>Copyright © Abdelaliem Hosny 2024</Copyright>
+		<PackageTags>Egypt NationalID Validation BirthDate Age Gender Province</PackageTags>
+		<!-- Tags to improve discoverability -->
+	</PropertyGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace validate_national_Id.Enums
 {
-    public enum provincial_code
+    public enum ProvincialCode
     {
         Cairo = 1,          // 01
         Alexandria = 2,     // 02
@@ -37,6 +37,4 @@ namespace validate_national_Id.Enums
         SouthSinai = 35,    // 35
         OutsideTheRepublic = 88 // 88
     }
-
-
 }
