@@ -16,9 +16,22 @@ namespace validate_national_Id.Implementation
             var egyptRequestModel = requestModel as RequestModelEgypt;
 
             // Check if the request model is valid
-            if (egyptRequestModel == null)
+            if (egyptRequestModel == null  
+                || selectedValidations is null && (!egyptRequestModel.provincial_code.HasValue 
+                 || !egyptRequestModel.birth_date.HasValue
+                 || !egyptRequestModel.is_male.HasValue) )
+               
             {
                 return new ResponseModel { IsValid = false, Message = "Invalid request model for Egyptian national ID." };
+            }
+
+            if(selectedValidations is not null &&
+              (  (selectedValidations.Contains(NationalNumberValidations.ValidateProvince) && !egyptRequestModel.provincial_code.HasValue)
+                || (selectedValidations.Contains(NationalNumberValidations.ValidateBirthDate) && !egyptRequestModel.birth_date.HasValue)
+                || (selectedValidations.Contains(NationalNumberValidations.ValidateGender) && !egyptRequestModel.is_male.HasValue)))
+            {
+                return new ResponseModel { IsValid = false, Message = "Invalid request model for Egyptian national ID." };
+
             }
 
             // Length = 14 and only numbers
@@ -35,7 +48,7 @@ namespace validate_national_Id.Implementation
             // Century validation
             if (validateAll || selectedValidations.Contains(NationalNumberValidations.ValidateCentury))
             {
-                var birthYear = egyptRequestModel.birth_date.Year;
+                var birthYear = egyptRequestModel.birth_date.Value.Year;
                 var centuryCode = int.Parse(egyptRequestModel.NationalNumber.Substring(0, 1));
                 if (centuryCode != 2 && centuryCode != 3)
                 {
@@ -84,8 +97,8 @@ namespace validate_national_Id.Implementation
             if (validateAll || selectedValidations.Contains(NationalNumberValidations.ValidateGender))
             {
                 var genderCode = int.Parse(egyptRequestModel.NationalNumber.Substring(12, 1));
-                if ((egyptRequestModel.is_male && genderCode % 2 == 0) ||
-                    (!egyptRequestModel.is_male && genderCode % 2 != 0))
+                if ((egyptRequestModel.is_male.Value && genderCode % 2 == 0) ||
+                    (!egyptRequestModel.is_male.Value && genderCode % 2 != 0))
                 {
                     return new ResponseModel { IsValid = false, Message = "Gender code in national number does not match the provided gender." };
                 }

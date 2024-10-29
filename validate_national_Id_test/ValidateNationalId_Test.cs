@@ -19,6 +19,146 @@ public class ValidateNationalId_Test
     }
 
     [Fact]
+    public void ValidateNationalNumber_MissingBirthDate_ShouldReturnFailure()
+    {
+        // Arrange
+        var requestModel = new RequestModelEgypt
+        {
+            NationalNumber = "30001010100123",
+            // Missing birth date
+            is_male = true,
+            provincial_code = ProvincialCodeEgypt.Cairo
+        };
+
+        // Act
+        var result = _validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Equal("Invalid request model for Egyptian national ID.", result.Message);
+    }
+
+    [Fact]
+    public void ValidateNationalNumber_MissingisMale_ShouldReturnFailure()
+    {
+        // Arrange
+        var requestModel = new RequestModelEgypt
+        {
+            NationalNumber = "30001010100123",
+            birth_date = new DateOnly(1991, 10, 12), // Use DateOnly for birth_date
+            provincial_code = ProvincialCodeEgypt.Cairo
+        };
+
+        // Act
+        var result = _validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Equal("Invalid request model for Egyptian national ID.", result.Message);
+    }
+
+    [Fact]
+    public void ValidateNationalNumber_Missing_provincial_code_ShouldReturnFailure()
+    {
+        // Arrange
+        var requestModel = new RequestModelEgypt
+        {
+            NationalNumber = "30001010100123",
+            birth_date = new DateOnly(1991, 10, 12), // Use DateOnly for birth_date
+            is_male = true,
+        };
+
+        // Act
+        var result = _validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Equal("Invalid request model for Egyptian national ID.", result.Message);
+    }
+
+    [Fact]
+    public void ValidateNationalNumber_Missing_provincial_code_But_No_MakeValidate_ShouldReturnFailure()
+    {
+        // Arrange
+        var requestModel = new RequestModelEgypt
+        {
+            NationalNumber = "30001010100123",
+            birth_date = new DateOnly(1991, 10, 12), // Use DateOnly for birth_date
+            is_male = true,
+        };
+
+        var nationalNumberValidations = new List<NationalNumberValidations> {
+            NationalNumberValidations.ValidateBirthDate,
+            NationalNumberValidations.ValidateProvince,
+            NationalNumberValidations.ValidateGender,
+            
+        };
+
+        // Act
+        var result = _validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, nationalNumberValidations);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Equal("Invalid request model for Egyptian national ID.", result.Message);
+    }
+
+    [Fact]
+    public void ValidateNationalNumber_Missing_birth_date_But_No_MakeValidate_ShouldReturnFailure()
+    {
+        // Arrange
+        var requestModel = new RequestModelEgypt
+        {
+            NationalNumber = "30001010100123",
+            provincial_code = ProvincialCodeEgypt.Sohag, // Assuming this is valid
+            //birth_date = new DateOnly(19year: 91, 10, 12), // Use DateOnly for birth_date
+            is_male = true,
+        };
+
+        var nationalNumberValidations = new List<NationalNumberValidations> {
+            NationalNumberValidations.ValidateBirthDate,
+            NationalNumberValidations.ValidateProvince,
+            NationalNumberValidations.ValidateGender,
+
+        };
+
+        // Act
+        var result = _validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, nationalNumberValidations);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Equal("Invalid request model for Egyptian national ID.", result.Message);
+    }
+
+    [Fact]
+    public void ValidateNationalNumber_Missing_is_male_But_No_MakeValidate_ShouldReturnFailure()
+    {
+        // Arrange
+        var requestModel = new RequestModelEgypt
+        {
+            NationalNumber = "30001010100123",
+            provincial_code = ProvincialCodeEgypt.Sohag, // Assuming this is valid
+            birth_date = new DateOnly(1991, 10, 12), // Use DateOnly for birth_date
+            //is_male = true,
+        };
+
+        var nationalNumberValidations = new List<NationalNumberValidations> {
+            NationalNumberValidations.ValidateBirthDate,
+            NationalNumberValidations.ValidateProvince,
+            NationalNumberValidations.ValidateGender,
+
+        };
+
+        // Act
+        var result = _validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, nationalNumberValidations);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Equal("Invalid request model for Egyptian national ID.", result.Message);
+    }
+
+
+
+    [Fact]
     public void ValidateNationalNumber_ValidEgyptianNationalID_ReturnsValidResponse()
     {
         // Arrange

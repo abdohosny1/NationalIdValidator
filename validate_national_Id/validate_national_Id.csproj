@@ -4,14 +4,14 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Title>ValidateNationalId</Title>
+		<Title>NationalIdValidator</Title>
 		<Authors>Abdelaliem Hosny</Authors>
-		<Description>A library for validating national IDs in Egypt, extracting birth date, age, gender, and provincial details based on the national ID.</Description>
-		<PackageId>ValidateNationalIdLib</PackageId>
+		<Description>A versatile library for validating national IDs and extracting key information such as birth date, age, gender, and regional details from national ID numbers for various countries, including Egypt.</Description>
+		<PackageId>NationalIdValidator</PackageId>
 		<PackageVersion>1.0.0</PackageVersion>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<!-- Choose a license, e.g., MIT -->
-		<PackageProjectUrl>https://github.com/abdohosny1/validate_national_Id</PackageProjectUrl>
+		<PackageProjectUrl></PackageProjectUrl>
 		<RepositoryUrl>https://github.com/abdohosny1/validate_national_Id</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<!-- Specifies that this is hosted in a Git repository -->
@@ -20,11 +20,19 @@
 		<!-- Replace with your actual company name -->
 		<Copyright>Copyright © Abdelaliem Hosny 2024</Copyright>
 		<PackageTags>Egypt NationalID Validation BirthDate Age Gender Province</PackageTags>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
 		<!-- Tags to improve discoverability -->
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+	  <None Include="..\..\..\nuget\Readme.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
 	</ItemGroup>
 
 </Project>

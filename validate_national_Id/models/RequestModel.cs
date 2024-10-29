@@ -9,15 +9,15 @@ namespace validate_national_Id.models
 {
     public class RequestModel
     {
-        public DateOnly birth_date { get; set; }
-        public bool is_male { get; set; }
+        public DateOnly? birth_date { get; set; }
+        public bool? is_male { get; set; }
         public string NationalNumber { get; set; }
 
     }
     public class RequestModelEgypt : RequestModel
     {
 
-        public ProvincialCodeEgypt provincial_code { get; set; }
+        public ProvincialCodeEgypt? provincial_code { get; set; }
     }
 
 
