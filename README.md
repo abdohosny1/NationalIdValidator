@@ -19,7 +19,7 @@ dotnet add package NationalIdValidator --version 1.0.0
 ```
 
 ## How to Use
-1. Basic Validation
+## 1. Basic Validation
 You can validate the format and values of a national ID using this library. Here’s an example of how to perform basic validation:
 
 ``` shell
@@ -62,7 +62,7 @@ You can validate the format and values of a national ID using this library. Here
             Console.WriteLine($"Information extraction failed: {info.ErrorMessage}");
         }
 ```
-2. Customizable Validation
+## 2. Customizable Validation
 You can specify which validations to perform by using the selectedValidations parameter. For example:
 ```shell
 var selectedValidations = new List<NationalNumberValidations>
@@ -73,7 +73,7 @@ var selectedValidations = new List<NationalNumberValidations>
 
 var response = validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, selectedValidations);
 ```
-3. ASP.NET Core Integration
+## 3. ASP.NET Core Integration
 To integrate NationalIdValidator into your ASP.NET Core application, register the service in program.cs:
 
 ```shell
