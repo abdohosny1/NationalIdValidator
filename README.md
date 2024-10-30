@@ -18,7 +18,7 @@ Install via NuGet Package Manager Console:
 dotnet add package validate_national_Id
 
 
-How to Use
+##How to Use
 1. Basic Validation
 You can validate the format and values of a national ID using this library. Here’s an example of how to perform basic validation:
 
@@ -103,7 +103,8 @@ public class ValidatorController : Controller
 }
 
 
-
+Contact
+For inquiries or feedback, please reach out to your_email@example.com.
 
     
 
