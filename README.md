@@ -15,7 +15,7 @@ The `NationalIdValidator` library provides robust validation and information ext
 Install via NuGet Package Manager Console:
 
 ```shell
-dotnet add package validate_national_Id
+dotnet add package NationalIdValidator --version 1.0.0
 ```
 
 ## How to Use
