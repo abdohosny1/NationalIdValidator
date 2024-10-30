@@ -17,6 +17,7 @@ Install via NuGet Package Manager Console:
 ```shell
 dotnet add package validate_national_Id
 
+
 How to Use
 1. Basic Validation
 You can validate the format and values of a national ID using this library. Here’s an example of how to perform basic validation:
@@ -27,7 +28,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        string nationalId = "National ID";
+        string nationalId = "29708011607596"; // Example National ID
 
         // Create an instance of ValidateNationalId with the factory
         ValidateNationalId validateNationalId = new ValidateNationalId(new NationalIdValidationStrategyFactory());
@@ -36,8 +37,8 @@ class Program
         var requestModel = new RequestModelEgypt
         {
             NationalNumber = nationalId,
-            birth_date = new DateOnly(1997, 8, 1), // Example birth date
-            provincial_code = ProvincialCodeEgypt.Cairo, // Example province code
+            birth_date = new DateOnly(1991, 10, 12), // Example birth date
+            provincial_code = ProvincialCodeEgypt.Sohag, // Example province code
             is_male = true // Example gender
         };
 
@@ -53,6 +54,56 @@ class Program
         {
             Console.WriteLine($"Validation failed: {response.Message}");
         }
+
+        // Check information extraction
+        var info = validateNationalId.GetInformationByNationalNumber(nationalId, Country.Egypt);
+        if (info.IsSuccess)
+        {
+            Console.WriteLine($"Age: {info.Data.Age}, Birth Date: {info.Data.BirthDate}, Province: {info.Data.Provincial}, Gender: {info.Data.Gender}");
+        }
+        else
+        {
+            Console.WriteLine($"Information extraction failed: {info.ErrorMessage}");
+        }
+    }
+
+2. Customizable Validation
+You can specify which validations to perform by using the selectedValidations parameter. For example:
+```shell
+var selectedValidations = new List<NationalNumberValidations>
+{
+    NationalNumberValidations.ValidateBirthDate,
+    NationalNumberValidations.ValidateProvince
+};
+
+var response = validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, selectedValidations);
+
+3. ASP.NET Core Integration
+To integrate NationalIdValidator into your ASP.NET Core application, register the service in program.cs:
+
+```shell
+builder.Services.AddNationalIdValidator();
+
+Then, inject ValidateNationalId into your controllers:
+
+```shell
+public class ValidatorController : Controller
+{
+    private readonly ValidateNationalId validateNationalId;
+
+    public ValidatorController(ValidateNationalId validateNationalId)
+    {
+        this.validateNationalId = validateNationalId;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
     }
 }
+
+
+
+
+    
 
