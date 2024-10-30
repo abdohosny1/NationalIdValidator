@@ -99,7 +99,7 @@ public class ValidatorController : Controller
 
 ```
 Contact
-For inquiries or feedback, please reach out to your_email@example.com.
+For inquiries or feedback, please reach out to abdelaliemhosny18@gmail.com.
 
     
 
