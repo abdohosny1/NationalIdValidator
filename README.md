@@ -24,7 +24,7 @@ You can validate the format and values of a national ID using this library. Here
 
 ``` shell
 
-        string nationalId = "29708011607596"; // Example National ID
+        string nationalId = "nationalId"; // Example National ID
 
         // Create an instance of ValidateNationalId with the factory
         ValidateNationalId validateNationalId = new ValidateNationalId(new NationalIdValidationStrategyFactory());
