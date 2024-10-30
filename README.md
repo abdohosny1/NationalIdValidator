@@ -16,7 +16,7 @@ Install via NuGet Package Manager Console:
 
 ```shell
 dotnet add package validate_national_Id
-
+```
 
 ##How to Use
 1. Basic Validation
@@ -66,7 +66,7 @@ class Program
             Console.WriteLine($"Information extraction failed: {info.ErrorMessage}");
         }
     }
-
+```
 2. Customizable Validation
 You can specify which validations to perform by using the selectedValidations parameter. For example:
 ```shell
@@ -77,7 +77,7 @@ var selectedValidations = new List<NationalNumberValidations>
 };
 
 var response = validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, selectedValidations);
-
+```
 3. ASP.NET Core Integration
 To integrate NationalIdValidator into your ASP.NET Core application, register the service in program.cs:
 
@@ -85,7 +85,7 @@ To integrate NationalIdValidator into your ASP.NET Core application, register th
 builder.Services.AddNationalIdValidator();
 
 Then, inject ValidateNationalId into your controllers:
-
+```
 ```shell
 public class ValidatorController : Controller
 {
@@ -102,7 +102,7 @@ public class ValidatorController : Controller
     }
 }
 
-
+```
 Contact
 For inquiries or feedback, please reach out to your_email@example.com.
 
