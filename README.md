@@ -98,8 +98,9 @@ public class ValidatorController : Controller
         return View();
     }
 }
+```
 
-## suport country
+## Suport country
 ```shell
     public enum Country
     {
@@ -107,9 +108,17 @@ public class ValidatorController : Controller
         // Add other countries as needed
     }
 ```
-```
-Contact
-For inquiries or feedback, please reach out to abdelaliemhosny18@gmail.com.
+
 
     
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at abdelaliemhosny18@gmail.com
+
+
+## Support
+
+For support, email abdelaliemhosny18@gmail.com .
 
