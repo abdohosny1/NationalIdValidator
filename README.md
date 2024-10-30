@@ -67,8 +67,10 @@ You can specify which validations to perform by using the selectedValidations pa
 ```shell
 var selectedValidations = new List<NationalNumberValidations>
 {
-    NationalNumberValidations.ValidateBirthDate,
-    NationalNumberValidations.ValidateProvince
+            NationalNumberValidations.ValidateProvince,
+            NationalNumberValidations.ValidateGender,
+            NationalNumberValidations.ValidateBirthDate,
+            NationalNumberValidations.ValidateCentury,
 };
 
 var response = validateNationalId.ValidateNationalNumber(requestModel, Country.Egypt, selectedValidations);
@@ -97,6 +99,14 @@ public class ValidatorController : Controller
     }
 }
 
+## suport country
+```shell
+    public enum Country
+    {
+        Egypt,
+        // Add other countries as needed
+    }
+```
 ```
 Contact
 For inquiries or feedback, please reach out to abdelaliemhosny18@gmail.com.
