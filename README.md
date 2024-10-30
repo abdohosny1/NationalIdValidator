@@ -18,16 +18,12 @@ Install via NuGet Package Manager Console:
 dotnet add package validate_national_Id
 ```
 
-##How to Use
+## How to Use
 1. Basic Validation
 You can validate the format and values of a national ID using this library. Here’s an example of how to perform basic validation:
 
 ``` shell
 
-class Program
-{
-    static void Main(string[] args)
-    {
         string nationalId = "29708011607596"; // Example National ID
 
         // Create an instance of ValidateNationalId with the factory
@@ -65,7 +61,6 @@ class Program
         {
             Console.WriteLine($"Information extraction failed: {info.ErrorMessage}");
         }
-    }
 ```
 2. Customizable Validation
 You can specify which validations to perform by using the selectedValidations parameter. For example:
@@ -83,9 +78,9 @@ To integrate NationalIdValidator into your ASP.NET Core application, register th
 
 ```shell
 builder.Services.AddNationalIdValidator();
+```
 
 Then, inject ValidateNationalId into your controllers:
-```
 ```shell
 public class ValidatorController : Controller
 {
